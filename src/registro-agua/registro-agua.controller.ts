@@ -1,6 +1,8 @@
-import { Controller, Get, HttpStatus, Param, ParseIntPipe, Res } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpStatus, Param, ParseIntPipe, Post, Put, Res } from '@nestjs/common';
 import { RegistroAguaService } from './registro-agua.service';
 import { RegistroAgua } from './interfaces/registro-agua.interface';
+import { Response } from 'express';
+import { CreateRegistroAguaDto } from './dto/create-registroAgua.dto';
 
 @Controller('registro-agua')
 export class RegistroAguaController {
@@ -13,9 +15,9 @@ export class RegistroAguaController {
 
     @Get(':id')
     findOne(@Param('id', ParseIntPipe) id: number, @Res() res: Response) {
-        const gatoEncontrado = this.registroAguaService.findById(id);
-        if (gatoEncontrado) {
-            res.status(HttpStatus.OK).json(gatoEncontrado);
+        const registroDado = this.registroAguaService.findById(id);
+        if (registroDado) {
+            res.status(HttpStatus.OK).json(registroDado);
         } else {
             res.status(HttpStatus.NOT_FOUND).send();
         }
@@ -23,9 +25,9 @@ export class RegistroAguaController {
 
     @Delete(':id')
     remove(@Param('id', ParseIntPipe) id: number, @Res() res: Response) {
-        const indexGatoEncontrado = this.registroAguaService.findIndexById(id);
-        if (indexGatoEncontrado >= 0) {
-            this.registroAguaService.deleteByIndex(indexGatoEncontrado);
+        const indexRegistroDado = this.registroAguaService.findIndexById(id);
+        if (indexRegistroDado >= 0) {
+            this.registroAguaService.deleteByIndex(indexRegistroDado);
             res.status(HttpStatus.NO_CONTENT).send();
         } else {
             res.status(HttpStatus.NOT_FOUND).send();
@@ -33,16 +35,16 @@ export class RegistroAguaController {
     }
 
     @Post()
-    create(@Body() createCatDto: CreateCatDto, @Res() res: Response) {
-        this.registroAguaService.create(createCatDto);
-        res.status(HttpStatus.CREATED).json(createCatDto);
+    create(@Body() createRegistroAguaDto: CreateRegistroAguaDto, @Res() res: Response) {
+        this.registroAguaService.create(createRegistroAguaDto);
+        res.status(HttpStatus.CREATED).json(createRegistroAguaDto);
     }    
 
     @Put(':id')
-    update(@Param('id', ParseIntPipe) id: number, @Body() cat: Cat, @Res() res: Response) {
-        const indexGatoEncontrado = this.registroAguaService.findIndexById(id);
-        if(indexGatoEncontrado >= 0){
-            this.registroAguaService.update(indexGatoEncontrado, cat);
+    update(@Param('id', ParseIntPipe) id: number, @Body() registroAgua: RegistroAgua, @Res() res: Response) {
+        const indexRegistroDado = this.registroAguaService.findIndexById(id);
+        if(indexRegistroDado >= 0){
+            this.registroAguaService.update(indexRegistroDado, registroAgua);
             res.status(HttpStatus.NO_CONTENT).send();
         } else {
             res.status(HttpStatus.NOT_FOUND).send();
