@@ -21,7 +21,7 @@ export class RegistroAguaService {
     }
 
     findById(id: number): Promise<RegistroAgua | null> {
-        return this.registroAguaRepository.findOneBy({id});
+        return this.registroAguaRepository.findOneBy({ id });
     }
 
     async update(id: number, dto: CreateRegistroAguaOrUpdateDto): Promise<void> {
