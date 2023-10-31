@@ -1,7 +1,7 @@
 import { IsNotEmpty, IsPositive } from "class-validator";
 
 
-export class CreateRegistroAguaDto {
+export class CreateRegistroAguaOrUpdateDto {
     @IsPositive()
     id: number;
 

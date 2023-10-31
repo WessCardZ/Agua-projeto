@@ -1,26 +1,35 @@
 import { Injectable } from '@nestjs/common';
-import { RegistroAgua } from './interfaces/registro-agua.interface';
+import { Repository } from 'typeorm';
+import { RegistroAgua } from './entities/historico.entity';
+import { InjectRepository } from '@nestjs/typeorm';
+import { CreateRegistroAguaOrUpdateDto } from './dto/create-registroAgua.dto';
 
 @Injectable()
 export class RegistroAguaService {
-    private readonly registrosAgua: RegistroAgua[] = [];
 
-    findAll(): RegistroAgua[] {
-        return this.registrosAgua;
+    constructor(
+        @InjectRepository(RegistroAgua)
+        private registroAguaRepository: Repository<RegistroAgua>
+    ) { }
+
+    findAll(): Promise<RegistroAgua[]> {
+        return this.registroAguaRepository.find();
     }
-    create(registroAgua: RegistroAgua): void {
-        this.registrosAgua.push(registroAgua)
+
+    save(dto: CreateRegistroAguaOrUpdateDto): Promise<RegistroAgua> {
+        return this.registroAguaRepository.save(dto);
     }
-    findById(id: number): RegistroAgua {
-        return this.registrosAgua.find(registroAgua => registroAgua.id === id)
+
+    findById(id: number): Promise<RegistroAgua | null> {
+        return this.registroAguaRepository.findOneBy({id});
     }
-    findIndexById(id: number): number {
-        return this.registrosAgua.findIndex(registroAgua => registroAgua.id === id)
+
+    async update(id: number, dto: CreateRegistroAguaOrUpdateDto): Promise<void> {
+        await this.registroAguaRepository.update(id, dto);
     }
-    deleteByIndex(index: number): void {
-        this.registrosAgua.splice(index, 1)
+
+    async remove(id: number): Promise<void> {
+        await this.registroAguaRepository.delete(id);
     }
-    update(index: number, registroAgua: RegistroAgua): void {
-        this.registrosAgua.splice(index, 1, registroAgua)
-    }
+
 }
