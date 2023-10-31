@@ -1,4 +1,4 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class RegistroAgua {
@@ -8,7 +8,7 @@ export class RegistroAgua {
     @Column()
     quantidadeML: number;
 
-    @Column()
+    @CreateDateColumn()
     dataHoraConsumo: Date;
 
 }
