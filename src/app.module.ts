@@ -11,7 +11,7 @@ import { RegistroAgua } from './registro-agua/entities/historico.entity';
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: 'dpg-cl0j213jdq6s73dsu1m0-a.oregon-postgres.render.com',
-      port: 3306,
+      port: 5432,
       username: 'hidratase_bd_user',
       password: 'Z3L6h84pxOmTmLYLF73rU1uS1VoieYjy',
       database: 'hidratase_bd',
