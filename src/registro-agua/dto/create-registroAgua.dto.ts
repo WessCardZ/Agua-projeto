@@ -1,10 +1,7 @@
-import { IsNotEmpty, IsPositive } from "class-validator";
+import { IsNotEmpty } from "class-validator";
 
 
 export class CreateRegistroAguaOrUpdateDto {
     @IsNotEmpty()
     quantidadeML: number;
-
-    @IsNotEmpty()
-    dataHoraConsumo: Date
 }
