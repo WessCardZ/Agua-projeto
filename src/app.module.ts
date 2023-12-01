@@ -7,6 +7,7 @@ import { DataSource } from 'typeorm';
 import { RegistroAgua } from './registro-agua/entities/historico.entity';
 import { UsuarioController } from './usuario/usuario.controller';
 import { UsuarioService } from './usuario/usuario.service';
+import { UsuarioModule } from './usuario/usuario.module';
 
 @Module({
   imports: [
@@ -20,9 +21,9 @@ import { UsuarioService } from './usuario/usuario.service';
       entities: [RegistroAgua],
       synchronize: true,
       ssl: true
-    }), RegistroAguaModule],
-  controllers: [AppController, UsuarioController],
-  providers: [AppService, UsuarioService],
+    }), RegistroAguaModule, UsuarioModule],
+  controllers: [AppController],
+  providers: [AppService],
 })
 export class AppModule {
   constructor(private dataSource: DataSource) { }
