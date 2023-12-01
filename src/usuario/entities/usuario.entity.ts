@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { RegistroAgua } from "src/registro-agua/entities/historico.entity";
 
 @Entity()
 export class Usuario {
@@ -16,4 +17,7 @@ export class Usuario {
 
     @Column()
     metaDiaria: number
+
+    @OneToMany(() => RegistroAgua, (registroAgua) => registroAgua.usuario)
+    registroAgua: RegistroAgua[];
 }
