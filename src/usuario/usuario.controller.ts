@@ -11,9 +11,9 @@ export class UsuarioController {
 
     @Get()
     findAll(): Promise<Usuario[]> {
-        console.log('Ola')
         return this.usuarioService.findAll();
     }
+
 
     @Get(':id')
     async findOne(@Param('id', ParseIntPipe) id: number, @Res() res: Response) {
