@@ -8,6 +8,7 @@ import { RegistroAgua } from './registro-agua/entities/historico.entity';
 import { UsuarioController } from './usuario/usuario.controller';
 import { UsuarioService } from './usuario/usuario.service';
 import { UsuarioModule } from './usuario/usuario.module';
+import { Usuario } from './usuario/entities/usuario.entity';
 
 @Module({
   imports: [
@@ -18,7 +19,7 @@ import { UsuarioModule } from './usuario/usuario.module';
       username: 'hidratase_bd_user',
       password: 'Z3L6h84pxOmTmLYLF73rU1uS1VoieYjy',
       database: 'hidratase_bd',
-      entities: [RegistroAgua],
+      entities: [RegistroAgua, Usuario],
       synchronize: true,
       ssl: true
     }), RegistroAguaModule, UsuarioModule],
