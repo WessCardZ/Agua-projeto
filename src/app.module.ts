@@ -5,6 +5,8 @@ import { RegistroAguaModule } from './registro-agua/registro-agua.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { DataSource } from 'typeorm';
 import { RegistroAgua } from './registro-agua/entities/historico.entity';
+import { UsuarioController } from './usuario/usuario.controller';
+import { UsuarioService } from './usuario/usuario.service';
 
 @Module({
   imports: [
@@ -19,8 +21,8 @@ import { RegistroAgua } from './registro-agua/entities/historico.entity';
       synchronize: true,
       ssl: true
     }), RegistroAguaModule],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [AppController, UsuarioController],
+  providers: [AppService, UsuarioService],
 })
 export class AppModule {
   constructor(private dataSource: DataSource) { }
