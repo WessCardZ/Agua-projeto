@@ -12,7 +12,7 @@ export class UsuarioService {
     ) { };
 
     findAll(): Promise<Usuario[]> {
-        return this.usuarioRepository.find();
+        return this.usuarioRepository.find({ relations: { registroAgua: true } });
     }
 
     save(dto: CreateUsuarioOrUpdateDto): Promise<Usuario> {
