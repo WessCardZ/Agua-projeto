@@ -41,12 +41,12 @@ export class RegistroAguaController {
     async create(@Body() dto: CreateRegistroAguaOrUpdateDto, @Res() res: Response) {
         const registraAgua = await this.registroAguaService.save(dto);
         res.status(HttpStatus.CREATED).json(registraAgua);
-    }    
+    }
 
     @Put(':id')
     async update(@Param('id', ParseIntPipe) id: number, @Body() dto: CreateRegistroAguaOrUpdateDto, @Res() res: Response) {
         const registroDado = await this.registroAguaService.findById(id);
-        if(registroDado){
+        if (registroDado) {
             await this.registroAguaService.update(id, dto);
             res.status(HttpStatus.NO_CONTENT).send();
         } else {
