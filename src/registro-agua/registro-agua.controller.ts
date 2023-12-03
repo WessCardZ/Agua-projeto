@@ -40,7 +40,6 @@ export class RegistroAguaController {
     @Post(':id')
     async create(@Param('id', ParseIntPipe) id: number, @Body() dto: CreateRegistroAguaOrUpdateDto, @Res() res: Response) {
         const registraAgua = await this.registroAguaService.save(id, dto);
-        console.log(id)
         res.status(HttpStatus.CREATED).json(registraAgua);
     }
 
