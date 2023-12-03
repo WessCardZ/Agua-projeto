@@ -3,6 +3,7 @@ import { Repository } from 'typeorm';
 import { RegistroAgua } from './entities/historico.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CreateRegistroAguaOrUpdateDto } from './dto/create-registroAgua.dto';
+import { Usuario } from 'src/usuario/entities/usuario.entity';
 
 @Injectable()
 export class RegistroAguaService {
@@ -16,8 +17,16 @@ export class RegistroAguaService {
         return this.registroAguaRepository.find();
     }
 
-    save(dto: CreateRegistroAguaOrUpdateDto): Promise<RegistroAgua> {
-        return this.registroAguaRepository.save(dto);
+    save(id: number, dto: CreateRegistroAguaOrUpdateDto): Promise<RegistroAgua> {
+        const usuario = new Usuario();
+        usuario.id = id;
+
+        const registroAgua = new RegistroAgua();
+        registroAgua.quantidadeML = dto.quantidadeML;
+        registroAgua.dataHoraConsumo = new Date();
+        registroAgua.usuario = usuario
+
+        return this.registroAguaRepository.save(registroAgua);
     }
 
     findById(id: number): Promise<RegistroAgua | null> {
