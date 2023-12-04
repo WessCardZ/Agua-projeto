@@ -1,14 +1,16 @@
-import { IsNotEmpty } from "class-validator";
+import { IsMilitaryTime, IsNotEmpty } from "class-validator";
 
 export class CreateUsuarioOrUpdateDto {
     @IsNotEmpty()
     pesoAtual: number;
 
     @IsNotEmpty()
-    horarioAcordar: Date;
+    @IsMilitaryTime()
+    horarioAcordar: string;
 
     @IsNotEmpty()
-    horarioDormir: Date;
+    @IsMilitaryTime()
+    horarioDormir: string;
 
     @IsNotEmpty()
     metaDiaria: number

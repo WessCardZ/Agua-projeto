@@ -9,11 +9,11 @@ export class Usuario {
     @Column()
     pesoAtual: number;
 
-    @Column()
-    horarioAcordar: Date;
+    @Column({ type: 'time without time zone' })
+    horarioAcordar: string;
 
-    @Column()
-    horarioDormir: Date;
+    @Column({ type: 'time without time zone' })
+    horarioDormir: string;
 
     @Column()
     metaDiaria: number
