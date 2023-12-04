@@ -5,10 +5,8 @@ import { RegistroAguaModule } from './registro-agua/registro-agua.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { DataSource } from 'typeorm';
 import { RegistroAgua } from './registro-agua/entities/historico.entity';
-import { UsuarioController } from './usuario/usuario.controller';
-import { UsuarioService } from './usuario/usuario.service';
-import { UsuarioModule } from './usuario/usuario.module';
-import { Usuario } from './usuario/entities/usuario.entity';
+import { UsuarioModule } from './usuario-config/usuarioconfig.module';
+import { Usuario } from './usuario-config/entities/usuarioconfig.entity';
 
 @Module({
   imports: [

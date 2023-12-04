@@ -1,8 +1,8 @@
 import { Body, Controller, Delete, Get, HttpStatus, Param, ParseIntPipe, Res, Post, Put } from '@nestjs/common';
-import { UsuarioService } from './usuario.service';
-import { Usuario } from './entities/usuario.entity';
+import { UsuarioService } from './usuarioconfig.service';
+import { Usuario } from './entities/usuarioconfig.entity';
 import { Response } from 'express';
-import { CreateUsuarioOrUpdateDto } from './dto/create-usuario.dto';
+import { CreateUsuarioOrUpdateDto } from './dto/create-usuarioconfig.dto';
 
 @Controller('usuario')
 export class UsuarioController {

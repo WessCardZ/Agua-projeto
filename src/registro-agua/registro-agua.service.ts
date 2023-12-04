@@ -3,7 +3,7 @@ import { Repository } from 'typeorm';
 import { RegistroAgua } from './entities/historico.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CreateRegistroAguaOrUpdateDto } from './dto/create-registroAgua.dto';
-import { Usuario } from 'src/usuario/entities/usuario.entity';
+import { Usuario } from 'src/usuario-config/entities/usuarioconfig.entity';
 
 @Injectable()
 export class RegistroAguaService {
