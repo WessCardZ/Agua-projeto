@@ -1,4 +1,5 @@
-import { Usuario } from "src/usuario-config/entities/usuarioconfig.entity";
+import { UsuarioConfig } from "src/usuario-config/entities/usuarioconfig.entity";
+import { Usuario } from "src/usuario/entities/usuario.entities";
 import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
@@ -13,6 +14,5 @@ export class RegistroAgua {
     dataHoraConsumo: Date;
 
     @ManyToOne(() => Usuario, (usuario) => usuario.registroAgua)
-    usuario: Usuario;
-
+    usuario: Usuario
 }

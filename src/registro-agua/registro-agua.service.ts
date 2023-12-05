@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { Repository } from 'typeorm';
-import { RegistroAgua } from './entities/historico.entity';
+import { RegistroAgua } from './entities/registro-agua.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CreateRegistroAguaOrUpdateDto } from './dto/create-registroAgua.dto';
-import { Usuario } from 'src/usuario-config/entities/usuarioconfig.entity';
+import { Usuario } from 'src/usuario/entities/usuario.entities';
 
 @Injectable()
 export class RegistroAguaService {

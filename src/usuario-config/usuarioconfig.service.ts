@@ -1,33 +1,41 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Usuario } from './entities/usuarioconfig.entity';
-import { CreateUsuarioOrUpdateDto } from './dto/create-usuarioconfig.dto';
+import { UsuarioConfig } from './entities/usuarioconfig.entity';
+import { CreateUsuarioConfigOrUpdateDto } from './dto/create-usuarioconfig.dto';
+import { Usuario } from 'src/usuario/entities/usuario.entities';
 
 @Injectable()
-export class UsuarioService {
+export class UsuarioConfigService {
     constructor(
-        @InjectRepository(Usuario)
-        private usuarioRepository: Repository<Usuario>
+        @InjectRepository(UsuarioConfig)
+        private usuarioConfigRepository: Repository<UsuarioConfig>
     ) { };
 
-    findAll(): Promise<Usuario[]> {
-        return this.usuarioRepository.find({ relations: { registroAgua: true } });
+    findAll(): Promise<UsuarioConfig[]> {
+        return this.usuarioConfigRepository.find();
     }
 
-    save(dto: CreateUsuarioOrUpdateDto): Promise<Usuario> {
-        return this.usuarioRepository.save(dto)
+    save(id: number, dto: CreateUsuarioConfigOrUpdateDto): Promise<UsuarioConfig> {
+        const usuario = new Usuario();
+        usuario.id = id;
+
+        const usuarioConfig = this.usuarioConfigRepository.create({
+            ...dto,
+            usuario: usuario
+        })
+        return this.usuarioConfigRepository.save(usuarioConfig)
     }
 
-    findById(id: number): Promise<Usuario | null> {
-        return this.usuarioRepository.findOneBy({ id });
+    findById(id: number): Promise<UsuarioConfig | null> {
+        return this.usuarioConfigRepository.findOneBy({ id });
     }
 
-    async update(id: number, dto: CreateUsuarioOrUpdateDto): Promise<void> {
-        await this.usuarioRepository.update(id, dto)
+    async update(id: number, dto: CreateUsuarioConfigOrUpdateDto): Promise<void> {
+        await this.usuarioConfigRepository.update(id, dto)
     }
 
     async remove(id: number): Promise<void> {
-        await this.usuarioRepository.delete(id);
+        await this.usuarioConfigRepository.delete(id);
     }
 }

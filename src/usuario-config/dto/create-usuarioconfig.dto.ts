@@ -1,6 +1,6 @@
 import { IsMilitaryTime, IsNotEmpty } from "class-validator";
 
-export class CreateUsuarioOrUpdateDto {
+export class CreateUsuarioConfigOrUpdateDto {
     @IsNotEmpty()
     pesoAtual: number;
 

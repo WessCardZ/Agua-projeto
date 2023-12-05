@@ -4,9 +4,11 @@ import { AppService } from './app.service';
 import { RegistroAguaModule } from './registro-agua/registro-agua.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { DataSource } from 'typeorm';
-import { RegistroAgua } from './registro-agua/entities/historico.entity';
-import { UsuarioModule } from './usuario-config/usuarioconfig.module';
-import { Usuario } from './usuario-config/entities/usuarioconfig.entity';
+import { RegistroAgua } from './registro-agua/entities/registro-agua.entity';
+import { UsuarioConfigModule } from './usuario-config/usuarioconfig.module';
+import { UsuarioConfig } from './usuario-config/entities/usuarioconfig.entity';
+import { UsuarioModule } from './usuario/usuario.module';
+import { Usuario } from './usuario/entities/usuario.entities';
 
 @Module({
   imports: [
@@ -17,10 +19,10 @@ import { Usuario } from './usuario-config/entities/usuarioconfig.entity';
       username: 'hidratase_bd_user',
       password: 'Z3L6h84pxOmTmLYLF73rU1uS1VoieYjy',
       database: 'hidratase_bd',
-      entities: [RegistroAgua, Usuario],
+      entities: [RegistroAgua, UsuarioConfig, Usuario],
       synchronize: true,
       ssl: true
-    }), RegistroAguaModule, UsuarioModule],
+    }), RegistroAguaModule, UsuarioConfigModule, UsuarioModule],
   controllers: [AppController],
   providers: [AppService],
 })

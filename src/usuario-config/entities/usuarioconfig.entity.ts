@@ -1,8 +1,10 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
-import { RegistroAgua } from "src/registro-agua/entities/historico.entity";
+import { Column, Entity, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { RegistroAgua } from "src/registro-agua/entities/registro-agua.entity";
+import { Usuario } from "src/usuario/entities/usuario.entities";
+
 
 @Entity()
-export class Usuario {
+export class UsuarioConfig {
     @PrimaryGeneratedColumn()
     id: number;
 
@@ -18,6 +20,6 @@ export class Usuario {
     @Column()
     metaDiaria: number
 
-    @OneToMany(() => RegistroAgua, (registroAgua) => registroAgua.usuario)
-    registroAgua: RegistroAgua[];
+    @ManyToOne(() => Usuario, (usuario) => usuario.usuarioConfig)
+    usuario: Usuario;
 }

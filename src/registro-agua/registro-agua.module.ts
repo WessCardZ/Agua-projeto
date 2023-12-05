@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { RegistroAguaController } from './registro-agua.controller';
 import { RegistroAguaService } from './registro-agua.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { RegistroAgua } from './entities/historico.entity';
+import { RegistroAgua } from './entities/registro-agua.entity';
 
 @Module({
     imports: [TypeOrmModule.forFeature([RegistroAgua])],

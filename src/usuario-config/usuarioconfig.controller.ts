@@ -1,23 +1,23 @@
 import { Body, Controller, Delete, Get, HttpStatus, Param, ParseIntPipe, Res, Post, Put } from '@nestjs/common';
-import { UsuarioService } from './usuarioconfig.service';
-import { Usuario } from './entities/usuarioconfig.entity';
+import { UsuarioConfigService } from './usuarioconfig.service';
+import { UsuarioConfig } from './entities/usuarioconfig.entity';
 import { Response } from 'express';
-import { CreateUsuarioOrUpdateDto } from './dto/create-usuarioconfig.dto';
+import { CreateUsuarioConfigOrUpdateDto } from './dto/create-usuarioconfig.dto';
 
-@Controller('usuario')
-export class UsuarioController {
+@Controller('usuarioconfig')
+export class UsuarioConfigController {
 
-    constructor(private usuarioService: UsuarioService) { }
+    constructor(private usuarioConfigService: UsuarioConfigService) { }
 
     @Get()
-    findAll(): Promise<Usuario[]> {
-        return this.usuarioService.findAll();
+    findAll(): Promise<UsuarioConfig[]> {
+        return this.usuarioConfigService.findAll();
     }
 
 
     @Get(':id')
     async findOne(@Param('id', ParseIntPipe) id: number, @Res() res: Response) {
-        const usuarioDado = await this.usuarioService.findById(id);
+        const usuarioDado = await this.usuarioConfigService.findById(id);
         if (usuarioDado) {
             res.status(HttpStatus.OK).json(usuarioDado)
         }
@@ -25,26 +25,26 @@ export class UsuarioController {
 
     @Delete(':id')
     async remove(@Param('id', ParseIntPipe) id: number, @Res() res: Response) {
-        const indexUsuarioDado = await this.usuarioService.findById(id);
+        const indexUsuarioDado = await this.usuarioConfigService.findById(id);
         if (indexUsuarioDado) {
-            await this.usuarioService.remove(id)
+            await this.usuarioConfigService.remove(id)
             res.status(HttpStatus.NO_CONTENT).send()
         } else {
             res.status(HttpStatus.NOT_FOUND).send()
         }
     }
 
-    @Post()
-    async create(@Body() dto: CreateUsuarioOrUpdateDto, @Res() res: Response) {
-        const criarUsuario = await this.usuarioService.save(dto);
-        res.status(HttpStatus.CREATED).json(criarUsuario)
+    @Post(':id')
+    async create(@Param('id', ParseIntPipe) id: number, @Body() dto: CreateUsuarioConfigOrUpdateDto, @Res() res: Response) {
+        const criarConfigUsuario = await this.usuarioConfigService.save(id, dto);
+        res.status(HttpStatus.CREATED).json(criarConfigUsuario)
     }
 
     @Put(':id')
-    async update(@Param('id', ParseIntPipe) id: number, @Body() dto: CreateUsuarioOrUpdateDto, @Res() res: Response) {
-        const usuarioDado = await this.usuarioService.findById(id);
+    async update(@Param('id', ParseIntPipe) id: number, @Body() dto: CreateUsuarioConfigOrUpdateDto, @Res() res: Response) {
+        const usuarioDado = await this.usuarioConfigService.findById(id);
         if (usuarioDado) {
-            await this.usuarioService.update(id, dto);
+            await this.usuarioConfigService.update(id, dto);
             res.status(HttpStatus.NO_CONTENT).send();
         } else {
             res.status(HttpStatus.NOT_FOUND).send();

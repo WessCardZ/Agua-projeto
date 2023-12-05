@@ -3,7 +3,7 @@ import { RegistroAguaService } from './registro-agua.service';
 // import { RegistroAgua } from './interfaces/registro-agua.interface';
 import { Response } from 'express';
 import { CreateRegistroAguaOrUpdateDto } from './dto/create-registroAgua.dto';
-import { RegistroAgua } from './entities/historico.entity';
+import { RegistroAgua } from './entities/registro-agua.entity';
 
 @Controller('registro-agua')
 export class RegistroAguaController {
