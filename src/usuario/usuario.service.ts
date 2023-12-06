@@ -20,7 +20,10 @@ export class UsuarioService {
     }
 
     findById(id: number): Promise<Usuario | null> {
-        return this.usuarioRepository.findOneBy({ id });
+        return this.usuarioRepository.findOne({
+            where: { id },
+            relations: { registroAgua: true, usuarioConfig: true }
+        });
     }
 
     async update(id: number, dto: CreateUsuarioOrUpdateDto): Promise<void> {
