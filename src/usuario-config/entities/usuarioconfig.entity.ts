@@ -8,7 +8,7 @@ export class UsuarioConfig {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column()
+    @Column('decimal', { precision: 4, scale: 2 })
     pesoAtual: number;
 
     @Column({ type: 'time without time zone' })
