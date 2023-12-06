@@ -30,4 +30,8 @@ export class UsuarioService {
     async remove(id: number): Promise<void> {
         await this.usuarioRepository.delete(id)
     }
+
+    async findOne(email: string): Promise<Usuario | undefined> {
+        return this.usuarioRepository.findOneBy({ email: email })
+    }
 }

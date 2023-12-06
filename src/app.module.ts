@@ -9,6 +9,7 @@ import { UsuarioConfigModule } from './usuario-config/usuarioconfig.module';
 import { UsuarioConfig } from './usuario-config/entities/usuarioconfig.entity';
 import { UsuarioModule } from './usuario/usuario.module';
 import { Usuario } from './usuario/entities/usuario.entities';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -22,7 +23,7 @@ import { Usuario } from './usuario/entities/usuario.entities';
       entities: [RegistroAgua, UsuarioConfig, Usuario],
       synchronize: true,
       ssl: true
-    }), RegistroAguaModule, UsuarioConfigModule, UsuarioModule],
+    }), RegistroAguaModule, UsuarioConfigModule, UsuarioModule, AuthModule],
   controllers: [AppController],
   providers: [AppService],
 })
