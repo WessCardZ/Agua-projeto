@@ -28,7 +28,16 @@ export class UsuarioConfigService {
     }
 
     findById(id: number): Promise<UsuarioConfig | null> {
-        return this.usuarioConfigRepository.findOneBy({ id });
+        return this.usuarioConfigRepository.findOne({
+            where: { id },
+            relations: { usuario: true }
+        });
+    }
+    findByUserId(userId: number): Promise<UsuarioConfig | null> {
+        return this.usuarioConfigRepository.findOne({
+            where: { usuario: { id: userId } },
+            relations: { usuario: true }
+        });
     }
 
     async update(id: number, dto: CreateUsuarioConfigOrUpdateDto): Promise<void> {

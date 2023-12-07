@@ -16,8 +16,15 @@ export class UsuarioConfigController {
 
 
     @Get(':id')
-    async findOne(@Param('id', ParseIntPipe) id: number, @Res() res: Response) {
+    async findOneId(@Param('id', ParseIntPipe) id: number, @Res() res: Response) {
         const usuarioDado = await this.usuarioConfigService.findById(id);
+        if (usuarioDado) {
+            res.status(HttpStatus.OK).json(usuarioDado)
+        }
+    }
+    @Get('usuario/:userId')
+    async findOneUserId(@Param('userId', ParseIntPipe) userId: number, @Res() res: Response) {
+        const usuarioDado = await this.usuarioConfigService.findByUserId(userId);
         if (usuarioDado) {
             res.status(HttpStatus.OK).json(usuarioDado)
         }
