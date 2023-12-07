@@ -48,10 +48,20 @@ export class UsuarioConfigController {
     }
 
     @Put(':id')
-    async update(@Param('id', ParseIntPipe) id: number, @Body() dto: CreateUsuarioConfigOrUpdateDto, @Res() res: Response) {
+    async updateId(@Param('id', ParseIntPipe) id: number, @Body() dto: CreateUsuarioConfigOrUpdateDto, @Res() res: Response) {
         const usuarioDado = await this.usuarioConfigService.findById(id);
         if (usuarioDado) {
             await this.usuarioConfigService.update(id, dto);
+            res.status(HttpStatus.NO_CONTENT).send();
+        } else {
+            res.status(HttpStatus.NOT_FOUND).send();
+        }
+    }
+    @Put('usuario/:userId')
+    async updateUserId(@Param('userId', ParseIntPipe) userId: number, @Body() dto: CreateUsuarioConfigOrUpdateDto, @Res() res: Response) {
+        const usuarioDado = await this.usuarioConfigService.findByUserId(userId);
+        if (usuarioDado) {
+            await this.usuarioConfigService.update(usuarioDado.id, dto);
             res.status(HttpStatus.NO_CONTENT).send();
         } else {
             res.status(HttpStatus.NOT_FOUND).send();
