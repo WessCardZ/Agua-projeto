@@ -5,8 +5,5 @@ export class CreateUsuarioOrUpdateDto {
     email: string;
 
     @IsNotEmpty()
-    nome: string
-
-    @IsNotEmpty()
     senha: string;
 }
